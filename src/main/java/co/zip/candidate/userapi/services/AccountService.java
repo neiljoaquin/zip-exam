@@ -27,7 +27,7 @@ public class AccountService {
      * Adds the account to the db if
      * 1. Email address is unique
      * 2. Monthly salary - monthly expenses < 1000
-     * @param accountDto The account to be added
+     * @param accountDto the account to be added
      * @throws InvalidInputException is thrown whenever the
      * above properties are not met
      */

@@ -29,18 +29,33 @@ public class AccountController {
         this.accountService = accountService;
     }
 
+    /**
+     * Adds an Account to the db. Will return 400 error when InvalidInputException is thrown.
+     * @param accountDto the object that contains the Account information
+     * @throws InvalidInputException if either the email from accountDto is not unique or the credit is invalid
+     */
     @PostMapping(BASE_URL)
     @ResponseStatus(HttpStatus.OK)
     public void addAccount(@RequestBody AccountDto accountDto) throws InvalidInputException {
         accountService.addAccount(accountDto);
     }
 
+    /**
+     * Retrieves the Account object from db associated with the given id
+     * @param id of the Account object
+     * @return the Account object if an entry is found in the db
+     * @throws EntryNotFoundException if there is no entry found in the db
+     */
     @GetMapping(BASE_URL)
-    public ResponseEntity<Account> fetchAccount(@RequestParam Long id) {
+    public ResponseEntity<Account> fetchAccount(@RequestParam Long id) throws EntryNotFoundException {
         Optional<Account> account = accountRepository.findById(id);
         return ResponseEntity.ok(account.orElseThrow(EntryNotFoundException::new));
     }
 
+    /**
+     * Retrieves all the Account objects from db
+     * @return list of Account objects
+     */
     @GetMapping(BASE_URL + "/list")
     public ResponseEntity<List<Account>> fetchAccountList() {
         return ResponseEntity.ok(accountRepository.findAll());
