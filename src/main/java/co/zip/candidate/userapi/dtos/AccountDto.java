@@ -1,5 +1,6 @@
 package co.zip.candidate.userapi.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -7,6 +8,7 @@ import lombok.Data;
  * @author Neil Joaquin
  */
 @Data
+@AllArgsConstructor
 public class AccountDto {
     private String name;
     private String emailAddress;

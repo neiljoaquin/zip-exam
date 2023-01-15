@@ -42,10 +42,9 @@ public class AccountService {
     }
 
     private Account convertDtoToEntity(AccountDto accountDto) {
-        Account account = new Account(accountDto.getName(),
+        return new Account(accountDto.getName(),
                 accountDto.getEmailAddress(),
                 accountDto.getMonthlySalary(),
                 accountDto.getMonthlyExpenses());
-        return account;
     }
 }
